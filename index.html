@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Natal ✝️🎄</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Shippori+Antique&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Shippori Antique',sans-serif}
+body{
+background:url('https://images.unsplash.com/photo-1544025162-d76694265947') center/cover no-repeat fixed;
+color:#fff;
+text-align:center;
+overflow:hidden;
+}
+.overlay{
+background:rgba(0,0,0,.55);
+width:100vw;height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+padding:20px;
+}
+h1{
+font-family:'Dancing Script',cursive;
+font-size:3rem;
+margin-bottom:20px;
+}
+.card{
+background:rgba(255,255,255,.12);
+border-radius:20px;
+padding:25px;
+max-width:420px;
+backdrop-filter:blur(6px);
+animation:fade 2s;
+}
+p{
+margin:15px 0;
+font-size:1.05rem;
+line-height:1.6;
+}
+img{
+width:120px;
+margin:10px;
+}
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+font-size:1rem;
+background:#e63946;
+color:#fff;
+cursor:pointer;
+}
+@keyframes fade{
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1;transform:translateY(0)}
+}
+.snow{
+position:absolute;
+top:-10px;
+color:#fff;
+animation:fall linear infinite;
+}
+@keyframes fall{
+to{transform:translateY(110vh)}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="https://feeldreams.github.io/maimuna.mp3">
+</audio>
+
+<div class="overlay">
+<h1>Feliz Natal 🎄✝️</h1>
+
+<div class="card">
+<img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+<p>O Natal é mais do que luzes e presentes.</p>
+<p>É o dia em que celebramos o nascimento de <b>Jesus Cristo</b>,</p>
+<p>aquele que veio ao mundo para nos ensinar o amor, a fé e a esperança.</p>
+<p>Que a paz de Cristo reine em seu coração e em sua família.</p>
+<img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+<p><b>Jesus é o maior presente 🎁</b></p>
+<button onclick="alert('Feliz Natal! ✝️🎄')">Amém 🙏</button>
+</div>
+</div>
+
+<script>
+for(let i=0;i<40;i++){
+let snow=document.createElement("div");
+snow.className="snow";
+snow.innerHTML="❄️";
+snow.style.left=Math.random()*100+"vw";
+snow.style.animationDuration=2+Math.random()*5+"s";
+snow.style.fontSize=12+Math.random()*18+"px";
+document.body.appendChild(snow);
+}
+</script>
+
+</body>
+</html>
