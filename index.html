@@ -8,12 +8,8 @@
 <!-- Fontes -->
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
 
-<!-- SweetAlert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- TypeIt -->
 <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
-
-<script src="script.js"></script>
 
 <style>
 *{
@@ -55,9 +51,7 @@ body{
 }
 
 @keyframes fall{
-  to{
-    transform:translateY(110vh);
-  }
+  to{ transform:translateY(110vh); }
 }
 
 /* Conteúdo */
@@ -136,6 +130,11 @@ blockquote{
   opacity:0.7;
 }
 
+/* Oculto */
+.hidden{
+  display:none;
+}
+
 /* Música escondida */
 audio{display:none;}
 </style>
@@ -149,13 +148,13 @@ audio{display:none;}
 <audio id="music" src="https://feeldreams.github.io/maimuna.mp3"></audio>
 
 <div id="Content">
-  
+
   <div id="start">
     <div class="lovein">⭐</div>
     <p id="ket">Toque na estrela</p>
   </div>
 
-  <blockquote id="msg" style="display:none;">
+  <blockquote id="msg" class="hidden">
     <p id="typing"></p>
 
     <p id="pesan1">Clique nas 4 ⭐</p>
@@ -163,22 +162,22 @@ audio{display:none;}
       <li>⭐</li><li>⭐</li><li>⭐</li><li>⭐</li>
     </div>
 
-    <p class="sty2b">O Natal não é apenas luzes ou presentes...</p>
-    <p class="sty2b">É o dia em que o amor nasceu ✝️</p>
-    <p class="sty2b">Jesus veio para nos ensinar a amar ❤️</p>
-    <p class="sty2b left">Que a paz de Cristo ilumine sua casa.</p>
-    <p class="sty2b left"><b>Feliz Natal 🎄<br>Jesus é o Nosso maior presente ✨</b></p>
+    <p class="sty2b hidden">O Natal não é apenas luzes ou presentes...</p>
+    <p class="sty2b hidden">É o dia em que o amor nasceu ✝️</p>
+    <p class="sty2b hidden">Jesus veio para nos ensinar a amar ❤️</p>
+    <p class="sty2b left hidden">Que a paz de Cristo ilumine sua casa.</p>
+    <p class="sty2b left hidden"><b>Feliz Natal 🎄<br>Jesus é o Nosso maior presente ✨</b></p>
 
-    <p id="opsL">🎁 Com carinho</p>
+    <p id="opsL" class="hidden">🎁 Com carinho</p>
   </blockquote>
 
 </div>
 
 <script>
-// Música + início
+// Clique inicial
 document.querySelector(".lovein").onclick = () => {
   document.getElementById("start").style.display="none";
-  document.getElementById("msg").style.display="block";
+  document.getElementById("msg").classList.remove("hidden");
   document.getElementById("music").play();
 
   new TypeIt("#typing", {
@@ -188,6 +187,37 @@ document.querySelector(".lovein").onclick = () => {
   .type("Tenho uma mensagem especial de Natal para você 🎄")
   .go();
 };
+
+// Controle das estrelas
+let estrelasClicadas = 0;
+const estrelas = document.querySelectorAll("#kolombaru li");
+const mensagens = document.querySelectorAll(".sty2b, #opsL");
+
+estrelas.forEach((estrela) => {
+  estrela.addEventListener("click", () => {
+    if (!estrela.classList.contains("ok")) {
+      estrela.classList.add("ok");
+      estrela.style.opacity="0.3";
+      estrela.style.pointerEvents="none";
+      estrelasClicadas++;
+    }
+
+    if (estrelasClicadas === 4) {
+      document.getElementById("kolombaru").style.display="none";
+      document.getElementById("pesan1").style.display="none";
+      mostrarMensagens();
+    }
+  });
+});
+
+function mostrarMensagens(){
+  mensagens.forEach((msg, i) => {
+    setTimeout(() => {
+      msg.classList.remove("hidden");
+      msg.style.animation="fadeUp 1s ease";
+    }, i * 1200);
+  });
+}
 
 // Neve
 function criarNeve(){
