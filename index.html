@@ -10,130 +10,32 @@
 
 <!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <!-- TypeIt -->
 <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Shippori Antique', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Shippori Antique',sans-serif}
+body{background:#000;overflow:hidden;color:#fff}
+#wallpaper{position:fixed;width:100%;height:100%;object-fit:cover;filter:brightness(0.6);z-index:-2}
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:-1}
 
-body{
-  background:#000;
-  overflow:hidden;
-  color:#fff;
-}
+.snow{position:fixed;top:-10px;color:white;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(110vh)}}
 
-#wallpaper{
-  position:fixed;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(0.6);
-  z-index:-2;
-}
+#Content{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
 
-#overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.55);
-  z-index:-1;
-}
+.lovein{font-size:52px;cursor:pointer;animation:pulse 1.5s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.35)}100%{transform:scale(1)}}
 
-/* Neve */
-.snow{
-  position:fixed;
-  top:-10px;
-  color:white;
-  animation: fall linear infinite;
-  z-index:1;
-}
+blockquote{background:rgba(0,0,0,.65);border-radius:22px;padding:25px;max-width:420px;animation:fadeUp 1.2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1}}
 
-@keyframes fall{
-  to{ transform:translateY(110vh); }
-}
+#kolombaru{display:flex;gap:12px;justify-content:center;margin:15px 0}
+#kolombaru li{list-style:none;font-size:26px;cursor:pointer}
 
-/* Conteúdo */
-#Content{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
-}
-
-/* Estrela inicial */
-.lovein{
-  font-size:52px;
-  cursor:pointer;
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.35)}
-  100%{transform:scale(1)}
-}
-
-#ket{
-  margin-top:10px;
-  opacity:0.85;
-}
-
-/* Mensagem */
-blockquote{
-  background:rgba(0,0,0,0.65);
-  border-radius:22px;
-  padding:25px;
-  max-width:420px;
-  animation:fadeUp 1.2s ease;
-}
-
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(30px)}
-  to{opacity:1; transform:translateY(0)}
-}
-
-.sty2b{
-  margin-top:14px;
-  font-size:16px;
-  line-height:1.4;
-}
-
-.left{ text-align:left; }
-
-#kolombaru{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  margin:15px 0;
-}
-
-#kolombaru li{
-  list-style:none;
-  font-size:26px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-#kolombaru li:hover{
-  transform:scale(1.5) rotate(15deg);
-}
-
-#opsL{
-  margin-top:18px;
-  font-size:14px;
-  opacity:0.75;
-}
-
-/* Música */
-audio{ display:none; }
+.sty2b{margin-top:14px;font-size:16px}
+.left{text-align:left}
+audio{display:none}
 </style>
 </head>
 
@@ -146,52 +48,75 @@ audio{ display:none; }
 
 <div id="Content">
 
-  <!-- TELA INICIAL -->
-  <div id="start">
-    <div class="lovein">⭐</div>
-    <p id="ket">Toque na estrela</p>
+<div id="start">
+  <div class="lovein">⭐</div>
+  <p>Toque na estrela</p>
+</div>
+
+<blockquote id="msg" style="display:none">
+  <p id="typing"></p>
+
+  <p id="pesan1">Clique nas 4 ⭐</p>
+  <div id="kolombaru">
+    <li>⭐</li><li>⭐</li><li>⭐</li><li>⭐</li>
   </div>
 
-  <!-- MENSAGEM -->
-  <blockquote id="msg" style="display:none;">
+  <div id="mensagens" style="display:none">
+    <p class="sty2b">Jesus é a prova viva do amor de Deus por nós.</p>
+    <p class="sty2b">Ele veio ao mundo para trazer luz onde havia escuridão.</p>
+    <p class="sty2b">Com humildade, Jesus nos ensinou o verdadeiro perdão.</p>
+    <p class="sty2b">Seu amor nos mostra que amar é se doar.</p>
+    <p class="sty2b">Seguir Jesus é escolher o caminho da paz.</p>
 
-    <p id="typing"></p>
+    <p class="sty2b left"><b>Feliz Natal 🎄<br>Jesus é o nosso maior presente ✨</b></p>
+  </div>
 
-    <p id="pesan1">Clique nas 4 ⭐</p>
-    <div id="kolombaru">
-      <li>⭐</li>
-      <li>⭐</li>
-      <li>⭐</li>
-      <li>⭐</li>
-    </div>
-
-    <!-- MENSAGENS ESCONDIDAS -->
-    <div id="mensagens" style="display:none;">
-      <p class="sty2b">Jesus é a prova viva do amor de Deus por nós.</p>
-      <p class="sty2b">Ele veio ao mundo para trazer luz onde havia escuridão.</p>
-      <p class="sty2b">Com humildade, Jesus nos ensinou o verdadeiro perdão.</p>
-      <p class="sty2b">Seu amor nos mostra que amar é se doar.</p>
-      <p class="sty2b">Em cada palavra de Cristo existe esperança.</p>
-      <p class="sty2b">Seguir Jesus é escolher o caminho da paz.</p>
-
-      <p class="sty2b left">O Natal é o momento em que o céu tocou a terra.</p>
-      <p class="sty2b left">Celebramos o nascimento do nosso Salvador.</p>
-      <p class="sty2b left">Mais que presentes, o Natal ensina a amar.</p>
-      <p class="sty2b left">É tempo de perdoar, agradecer e recomeçar.</p>
-      <p class="sty2b left">Que a luz do Natal ilumine seu lar.</p>
-      <p class="sty2b left">
-        <b>Feliz Natal 🎄<br>Jesus é o nosso maior presente ✨</b>
-      </p>
-    </div>
-
-    <p id="opsL">COM CARINHO POR LEO MODZ 😊</p>
-
-  </blockquote>
+  <p style="margin-top:15px;opacity:.7">COM CARINHO POR LEO MODZ 😊</p>
+</blockquote>
 
 </div>
 
-<!-- SCRIPT -->
-<script src="script.js"></script>
+<!-- SCRIPT CORRETO NO FINAL -->
+<script>
+let clicks = 0;
+const estrelas = document.querySelectorAll("#kolombaru li");
+
+document.querySelector(".lovein").onclick = () => {
+  start.style.display="none";
+  msg.style.display="block";
+  music.play();
+
+  new TypeIt("#typing",{speed:60,cursor:false})
+  .type("Tenho uma mensagem especial de Natal para você 🎄")
+  .go();
+};
+
+estrelas.forEach(e=>{
+  e.onclick=()=>{
+    if(e.classList.contains("ok"))return;
+    e.classList.add("ok");
+    e.innerHTML="✨";
+    clicks++;
+    if(clicks===4){
+      pesan1.style.display="none";
+      kolombaru.style.display="none";
+      mensagens.style.display="block";
+
+      Swal.fire("✝️ Jesus te ama","Que a paz de Cristo esteja com você ❤️","success");
+    }
+  }
+});
+
+setInterval(()=>{
+  const s=document.createElement("div");
+  s.className="snow";
+  s.innerHTML="❄";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=Math.random()*5+5+"s";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),10000);
+},200);
+</script>
 
 </body>
 </html>
